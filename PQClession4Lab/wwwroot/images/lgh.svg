@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+  <rect width="400" height="400" rx="56" fill="#6f42c1"/>
+  <circle cx="200" cy="145" r="74" fill="#fff" opacity=".95"/>
+  <path d="M78 350c16-84 65-126 122-126s106 42 122 126" fill="#fff" opacity=".95"/>
+  <text x="200" y="382" fill="#fff" font-family="Arial, sans-serif" font-size="30" font-weight="700" text-anchor="middle">GH</text>
+</svg>

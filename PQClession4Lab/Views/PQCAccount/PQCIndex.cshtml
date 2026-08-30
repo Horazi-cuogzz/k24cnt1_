@@ -1,0 +1,29 @@
+@using PQClession4Lab.Models
+@{
+    ViewData["Title"] = "Danh sách tài khoản";
+    var accounts = ViewBag.PQCAccounts as List<PQCAccount> ?? new List<PQCAccount>();
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h1 class="mb-1">Danh sách tài khoản</h1>
+        <p class="text-muted mb-0">Thông tin thành viên trong Lab 4</p>
+    </div>
+    <span class="badge rounded-pill bg-primary fs-6">@accounts.Count tài khoản</span>
+</div>
+
+<div class="row g-4">
+    @foreach (var account in accounts)
+    {
+        <div class="col-md-6 col-xl-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body text-center p-4">
+                    <img src="@account.Avatar" alt="Ảnh đại diện của @account.Name" class="rounded-circle mb-3" width="112" height="112" />
+                    <h2 class="h5">@account.Name</h2>
+                    <p class="text-muted small">@account.Bio</p>
+                    <a asp-route="pqcprofile" asp-route-id="@account.Id" class="btn btn-outline-primary">Xem hồ sơ</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

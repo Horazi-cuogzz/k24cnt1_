@@ -1,0 +1,37 @@
+@using PQClession4Lab.Models
+@{
+    var account = ViewBag.PQCAccount as PQCAccount;
+    ViewData["Title"] = account is null ? "Hồ sơ" : $"Hồ sơ {account.Name}";
+}
+
+@if (account is not null)
+{
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4 p-md-5">
+                    <div class="text-center mb-4">
+                        <img src="@account.Avatar" alt="Ảnh đại diện của @account.Name" class="rounded-circle mb-3" width="150" height="150" />
+                        <h1 class="h2 mb-1">@account.Name</h1>
+                        <p class="text-muted mb-0">@account.Bio</p>
+                    </div>
+                    <dl class="row border-top pt-4 mb-4">
+                        <dt class="col-sm-4">Mã tài khoản</dt>
+                        <dd class="col-sm-8">@account.Id</dd>
+                        <dt class="col-sm-4">Email</dt>
+                        <dd class="col-sm-8">@account.Email</dd>
+                        <dt class="col-sm-4">Điện thoại</dt>
+                        <dd class="col-sm-8">@account.Phone</dd>
+                        <dt class="col-sm-4">Địa chỉ</dt>
+                        <dd class="col-sm-8">@account.Address</dd>
+                        <dt class="col-sm-4">Giới tính</dt>
+                        <dd class="col-sm-8">@(account.Gender == 1 ? "Nam" : "Nữ")</dd>
+                        <dt class="col-sm-4">Ngày sinh</dt>
+                        <dd class="col-sm-8">@(account.Birthday?.ToString("dd/MM/yyyy") ?? "Chưa cập nhật")</dd>
+                    </dl>
+                    <a asp-route="account" class="btn btn-primary">Quay lại danh sách</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}

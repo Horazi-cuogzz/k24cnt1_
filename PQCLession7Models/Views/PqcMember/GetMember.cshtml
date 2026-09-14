@@ -1,0 +1,13 @@
+@{
+    ViewData["Title"] = "Thông tin member";
+    var member = Model as PQCLession7Models.Models.DataModels.PqcMember;
+}
+
+<div class="alert alert-info">
+    <h1>@ViewData["Title"]</h1>
+    <p>Member id: @member?.PqcMemberId</p>
+    <p>UserName: @member?.PqcUserName</p>
+    <p>Password: @member?.PqcPassword</p>
+    <p>FullName: @member?.PqcFullName</p>
+    <p>Email: @member?.PqcEmail</p>
+</div>

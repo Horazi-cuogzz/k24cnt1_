@@ -1,0 +1,49 @@
+@model PQCLesson08Models.Models.PqcMember
+
+@{
+    ViewData["Title"] = "Thông tin chi tiết thành viên";
+}
+
+<div class="card p-3">
+    <div class="card-header">
+        <h1>@ViewData["Title"]</h1>
+    </div>
+    <div class="card-body">
+        <dl class="row fs-5">
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.PqcMemberId)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.PqcMemberId)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.PqcUserName)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.PqcUserName)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.PqcPassword)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.PqcPassword)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.PqcFullName)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.PqcFullName)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.PqcEmail)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.PqcEmail)
+            </dd>
+        </dl>
+    </div>
+    <div class="card-footer">
+        @Html.ActionLink("Sửa", "PqcEdit", new { id = Model?.PqcMemberId }, new { @class = "btn btn-warning me-2" })
+        <a asp-action="Index" class="btn btn-secondary">Quay lại danh sách</a>
+    </div>
+</div>

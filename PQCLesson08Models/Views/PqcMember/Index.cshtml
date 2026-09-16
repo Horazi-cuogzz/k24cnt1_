@@ -1,0 +1,63 @@
+@model IEnumerable<PQCLesson08Models.Models.PqcMember>
+
+@{
+    ViewData["Title"] = "Danh sách thành viên";
+}
+
+<div class="card p-3">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h1>@ViewData["Title"]</h1> 
+        <a asp-action="PqcCreate" class="btn btn-success">Thêm mới</a>
+    </div>
+
+    <div class="card-body">
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PqcMemberId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PqcUserName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PqcPassword)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PqcFullName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PqcEmail)
+                    </th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PqcMemberId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PqcUserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PqcPassword)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PqcFullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PqcEmail)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Sửa", "PqcEdit", new { id = item.PqcMemberId }, new { @class = "btn btn-sm btn-warning me-1" }) |
+                        @Html.ActionLink("Xem chi tiết", "PqcDetails", new { id = item.PqcMemberId }, new { @class = "btn btn-sm btn-info text-white me-1" }) |
+                        @Html.ActionLink("Xóa", "PqcDelete", new { id = item.PqcMemberId }, new { @class = "btn btn-sm btn-danger" })
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>

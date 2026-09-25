@@ -1,0 +1,55 @@
+@model IEnumerable<PQCLesson09Annotation.Models.DataModels.PqcMember>
+
+@{
+    ViewData["Title"] = "Danh sách thành viên";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1>Danh sách thành viên</h1>
+    <a asp-action="Create" class="btn btn-primary">
+        <i class="bi bi-plus-circle"></i> Thêm mới thành viên
+    </a>
+</div>
+
+<table class="table table-bordered table-striped table-hover shadow-sm">
+    <thead class="table-primary">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.PqcMemberId)</th>
+            <th>@Html.DisplayNameFor(model => model.PqcUserName)</th>
+            <th>@Html.DisplayNameFor(model => model.PqcPassword)</th>
+            <th>@Html.DisplayNameFor(model => model.PqcEmail)</th>
+            <th>@Html.DisplayNameFor(model => model.PqcPhoneNumber)</th>
+            <th>@Html.DisplayNameFor(model => model.PqcFullName)</th>
+            <th>@Html.DisplayNameFor(model => model.PqcBirthday)</th>
+            <th class="text-center">Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.PqcMemberId)</td>
+                    <td>@Html.DisplayFor(modelItem => item.PqcUserName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.PqcPassword)</td>
+                    <td>@Html.DisplayFor(modelItem => item.PqcEmail)</td>
+                    <td>@Html.DisplayFor(modelItem => item.PqcPhoneNumber)</td>
+                    <td>@Html.DisplayFor(modelItem => item.PqcFullName)</td>
+                    <td>@item.PqcBirthday.ToString("dd/MM/yyyy")</td>
+                    <td class="text-center">
+                        <a asp-action="Edit" asp-route-id="@item.PqcMemberId" class="btn btn-sm btn-warning">Sửa</a>
+                        <a asp-action="Details" asp-route-id="@item.PqcMemberId" class="btn btn-sm btn-info text-white">Chi tiết</a>
+                        <a asp-action="Delete" asp-route-id="@item.PqcMemberId" class="btn btn-sm btn-danger">Xóa</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="8" class="text-center text-muted py-3">Chưa có dữ liệu thành viên</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,37 @@
+@model PQCLesson09Annotation.Models.DataModels.PqcMember
+
+@{
+    ViewData["Title"] = "Xác nhận xóa thành viên";
+}
+
+<h1 class="text-danger">Xóa thành viên</h1>
+<h4 class="text-muted">Bạn có chắc chắn muốn xóa thành viên này không?</h4>
+<hr />
+
+<div class="card border-danger shadow-sm col-md-8">
+    <div class="card-body">
+        <dl class="row fs-5">
+            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.PqcMemberId)</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.PqcMemberId)</dd>
+
+            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.PqcUserName)</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.PqcUserName)</dd>
+
+            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.PqcFullName)</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.PqcFullName)</dd>
+
+            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.PqcEmail)</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.PqcEmail)</dd>
+
+            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.PqcPhoneNumber)</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.PqcPhoneNumber)</dd>
+        </dl>
+    </div>
+    <div class="card-footer">
+        <form asp-action="Delete" method="post">
+            <input type="hidden" asp-for="PqcMemberId" />
+            <input type="submit" value="Xóa" class="btn btn-danger" />
+            <a asp-action="Index" class="btn btn-secondary ms-2">Hủy / Quay lại</a>
+        </form>
+    </div>
+</div>

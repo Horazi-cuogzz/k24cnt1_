@@ -1,0 +1,22 @@
+@{
+    ViewData["Title"] = "Trang chủ";
+}
+
+<div class="p-5 mb-4 bg-light rounded-3 shadow-sm text-center">
+    <div class="container-fluid py-3">
+        <h1 class="display-5 fw-bold text-primary">Lab 09: Data Annotation & Validation</h1>
+        <p class="fs-4 text-secondary">Ứng dụng ASP.NET Core MVC - Quản lý thành viên với kiểm tra dữ liệu đầu vào</p>
+        <hr class="my-4" />
+        <div class="d-flex justify-content-center gap-3">
+            <a asp-controller="PqcMember" asp-action="Index" class="btn btn-primary btn-lg px-4">
+                <i class="bi bi-people-fill"></i> Danh sách thành viên
+            </a>
+            <a asp-controller="PqcMember" asp-action="Create" class="btn btn-success btn-lg px-4">
+                <i class="bi bi-person-plus-fill"></i> Đăng ký thành viên
+            </a>
+            <a asp-controller="Home" asp-action="PqcAbout" class="btn btn-outline-info btn-lg px-4">
+                <i class="bi bi-info-circle"></i> Thông tin sinh viên
+            </a>
+        </div>
+    </div>
+</div>

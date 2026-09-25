@@ -1,0 +1,36 @@
+@model PQCLesson09Annotation.Models.DataModels.PqcMember
+
+@{
+    ViewData["Title"] = "Chi tiết thành viên";
+}
+
+<h1>Chi tiết thành viên</h1>
+<hr />
+
+<div class="card shadow-sm col-md-8">
+    <div class="card-body">
+        <dl class="row fs-5">
+            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.PqcMemberId)</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.PqcMemberId)</dd>
+
+            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.PqcUserName)</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.PqcUserName)</dd>
+
+            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.PqcFullName)</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.PqcFullName)</dd>
+
+            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.PqcEmail)</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.PqcEmail)</dd>
+
+            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.PqcPhoneNumber)</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.PqcPhoneNumber)</dd>
+
+            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.PqcBirthday)</dt>
+            <dd class="col-sm-8">@Model.PqcBirthday.ToString("dd/MM/yyyy")</dd>
+        </dl>
+    </div>
+    <div class="card-footer">
+        <a asp-action="Edit" asp-route-id="@Model.PqcMemberId" class="btn btn-warning">Sửa</a>
+        <a asp-action="Index" class="btn btn-secondary ms-2">Quay lại danh sách</a>
+    </div>
+</div>

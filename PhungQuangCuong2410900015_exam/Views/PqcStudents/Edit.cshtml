@@ -1,0 +1,80 @@
+@model PhungQuangCuong2410900015_exam.Models.PqcStudent
+
+@{
+    ViewData["Title"] = "Chỉnh sửa sinh viên";
+}
+
+<div class="container my-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-warning text-dark py-3">
+                    <h4 class="mb-0 fw-bold">CHỈNH SỬA THÔNG TIN SINH VIÊN</h4>
+                    <small>Mã SV: #@Model.Id | Phùng Quang Cường (2410900015)</small>
+                </div>
+                <div class="card-body p-4">
+                    <form asp-action="Edit">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+                        <input type="hidden" asp-for="Id" />
+
+                        <div class="mb-3">
+                            <label asp-for="PqcName" class="form-label fw-bold">Họ và tên sinh viên <span class="text-danger">*</span></label>
+                            <input asp-for="PqcName" class="form-control" required />
+                            <span asp-validation-for="PqcName" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="PqcGender" class="form-label fw-bold">Giới tính</label>
+                            <select asp-for="PqcGender" class="form-select">
+                                <option value="">-- Chọn giới tính --</option>
+                                <option value="true">Nam</option>
+                                <option value="false">Nữ</option>
+                            </select>
+                            <span asp-validation-for="PqcGender" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="PqcBirthDay" class="form-label fw-bold">Ngày sinh</label>
+                            <input asp-for="PqcBirthDay" type="date" class="form-control" />
+                            <span asp-validation-for="PqcBirthDay" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="PqcEmail" class="form-label fw-bold">Email</label>
+                            <input asp-for="PqcEmail" type="email" class="form-control" />
+                            <span asp-validation-for="PqcEmail" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="PqcPhone" class="form-label fw-bold">Số điện thoại</label>
+                            <input asp-for="PqcPhone" type="tel" class="form-control" />
+                            <span asp-validation-for="PqcPhone" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-4">
+                            <label asp-for="PqcActive" class="form-label fw-bold">Trạng thái</label>
+                            <select asp-for="PqcActive" class="form-select">
+                                <option value="true">Đang học (Hoạt động)</option>
+                                <option value="false">Tạm dừng (Khóa)</option>
+                            </select>
+                            <span asp-validation-for="PqcActive" class="text-danger"></span>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <button type="submit" class="btn btn-warning px-4 fw-bold">
+                                Lưu thay đổi
+                            </button>
+                            <a asp-action="Index" class="btn btn-secondary">
+                                Quay lại danh sách
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

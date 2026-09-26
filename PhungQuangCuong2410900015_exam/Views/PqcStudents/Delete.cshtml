@@ -1,0 +1,57 @@
+@model PhungQuangCuong2410900015_exam.Models.PqcStudent
+
+@{
+    ViewData["Title"] = "Xóa sinh viên";
+}
+
+<div class="container my-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm border-danger">
+                <div class="card-header bg-danger text-white py-3">
+                    <h4 class="mb-0 fw-bold">XÁC NHẬN XÓA SINH VIÊN</h4>
+                    <small>Bạn có chắc chắn muốn xóa sinh viên này khỏi hệ thống?</small>
+                </div>
+                <div class="card-body p-4">
+                    <div class="alert alert-warning">
+                        <strong>Cảnh báo:</strong> Thao tác xóa sinh viên không thể hoàn tác!
+                    </div>
+
+                    <dl class="row fs-6">
+                        <dt class="col-sm-4 text-muted">Mã số (Id):</dt>
+                        <dd class="col-sm-8 fw-bold text-danger">#@Model.Id</dd>
+
+                        <dt class="col-sm-4 text-muted">Họ và tên (PqcName):</dt>
+                        <dd class="col-sm-8 fw-semibold">@Model.PqcName</dd>
+
+                        <dt class="col-sm-4 text-muted">Giới tính (PqcGender):</dt>
+                        <dd class="col-sm-8">
+                            @(Model.PqcGender == true ? "Nam" : (Model.PqcGender == false ? "Nữ" : "Chưa xác định"))
+                        </dd>
+
+                        <dt class="col-sm-4 text-muted">Ngày sinh (PqcBirthDay):</dt>
+                        <dd class="col-sm-8">
+                            @(Model.PqcBirthDay?.ToString("dd/MM/yyyy") ?? "Chưa cập nhật")
+                        </dd>
+
+                        <dt class="col-sm-4 text-muted">Email (PqcEmail):</dt>
+                        <dd class="col-sm-8">@Model.PqcEmail</dd>
+
+                        <dt class="col-sm-4 text-muted">Số điện thoại (PqcPhone):</dt>
+                        <dd class="col-sm-8">@Model.PqcPhone</dd>
+                    </dl>
+
+                    <form asp-action="Delete" class="mt-4 pt-3 border-top d-flex align-items-center">
+                        <input type="hidden" asp-for="Id" />
+                        <button type="submit" class="btn btn-danger px-4 me-2">
+                            Xác nhận xóa
+                        </button>
+                        <a asp-action="Index" class="btn btn-secondary">
+                            Hủy bỏ / Quay lại
+                        </a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

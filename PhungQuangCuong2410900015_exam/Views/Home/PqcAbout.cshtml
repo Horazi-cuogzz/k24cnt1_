@@ -1,0 +1,58 @@
+@{
+    ViewData["Title"] = "Thông tin sinh viên";
+}
+
+<div class="container my-4">
+    <div class="card shadow-sm border-primary">
+        <div class="card-header bg-primary text-white">
+            <h3 class="mb-0"><i class="bi bi-person-badge"></i> THÔNG TIN SINH VIÊN</h3>
+        </div>
+        <div class="card-body p-4">
+            <div class="row align-items-center">
+                <div class="col-md-4 text-center border-end">
+                    <img src="https://ui-avatars.com/api/?name=Phung+Quang+Cuong&background=0D6EFD&color=fff&size=150" 
+                         alt="Phùng Quang Cường" class="rounded-circle shadow-sm img-fluid mb-3" />
+                    <h4 class="text-primary fw-bold">Phùng Quang Cường</h4>
+                    <p class="text-muted mb-1">Mã SV: <strong>2410900015</strong></p>
+                    <span class="badge bg-success">Lớp: K24CNT1</span>
+                </div>
+                <div class="col-md-8 ps-md-4">
+                    <h5 class="border-bottom pb-2 text-secondary">Chi tiết thông tin cá nhân:</h5>
+                    <dl class="row mt-3 fs-6">
+                        <dt class="col-sm-4 text-muted">Họ và tên:</dt>
+                        <dd class="col-sm-8 fw-bold">Phùng Quang Cường</dd>
+
+                        <dt class="col-sm-4 text-muted">Mã số sinh viên:</dt>
+                        <dd class="col-sm-8 fw-bold text-primary">2410900015</dd>
+
+                        <dt class="col-sm-4 text-muted">Lớp chuyên ngành:</dt>
+                        <dd class="col-sm-8">K24CNT1</dd>
+
+                        <dt class="col-sm-4 text-muted">Ngày sinh:</dt>
+                        <dd class="col-sm-8">15/01/2006</dd>
+
+                        <dt class="col-sm-4 text-muted">Giới tính:</dt>
+                        <dd class="col-sm-8">Nam</dd>
+
+                        <dt class="col-sm-4 text-muted">Email liên hệ:</dt>
+                        <dd class="col-sm-8"><a href="mailto:cuong.pq@gmail.com">cuong.pq@gmail.com</a></dd>
+
+                        <dt class="col-sm-4 text-muted">Số điện thoại:</dt>
+                        <dd class="col-sm-8">0987654321</dd>
+
+                        <dt class="col-sm-4 text-muted">Học phần:</dt>
+                        <dd class="col-sm-8">Phát triển ứng dụng Web với ASP.NET Core MVC</dd>
+                    </dl>
+                    <div class="mt-4">
+                        <a asp-controller="PqcStudents" asp-action="Index" class="btn btn-outline-primary">
+                            <i class="bi bi-people-fill"></i> Đến danh sách sinh viên
+                        </a>
+                        <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary ms-2">
+                            Quay về Trang chủ
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

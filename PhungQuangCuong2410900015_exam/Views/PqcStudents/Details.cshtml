@@ -1,0 +1,77 @@
+@model PhungQuangCuong2410900015_exam.Models.PqcStudent
+
+@{
+    ViewData["Title"] = "Chi tiết sinh viên";
+}
+
+<div class="container my-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-info text-white py-3">
+                    <h4 class="mb-0 fw-bold">CHI TIẾT THÔNG TIN SINH VIÊN</h4>
+                    <small>Mã SV: #@Model.Id | Phùng Quang Cường (2410900015)</small>
+                </div>
+                <div class="card-body p-4">
+                    <dl class="row fs-6">
+                        <dt class="col-sm-4 text-muted">Mã số (Id):</dt>
+                        <dd class="col-sm-8 fw-bold text-primary">#@Model.Id</dd>
+
+                        <dt class="col-sm-4 text-muted">Họ và tên (PqcName):</dt>
+                        <dd class="col-sm-8 fw-semibold">@Model.PqcName</dd>
+
+                        <dt class="col-sm-4 text-muted">Giới tính (PqcGender):</dt>
+                        <dd class="col-sm-8">
+                            @if (Model.PqcGender == true)
+                            {
+                                <span class="badge bg-primary">Nam</span>
+                            }
+                            else if (Model.PqcGender == false)
+                            {
+                                <span class="badge bg-danger">Nữ</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-secondary">Chưa xác định</span>
+                            }
+                        </dd>
+
+                        <dt class="col-sm-4 text-muted">Ngày sinh (PqcBirthDay):</dt>
+                        <dd class="col-sm-8">
+                            @(Model.PqcBirthDay?.ToString("dd/MM/yyyy") ?? "Chưa cập nhật")
+                        </dd>
+
+                        <dt class="col-sm-4 text-muted">Email (PqcEmail):</dt>
+                        <dd class="col-sm-8">
+                            <a href="mailto:@Model.PqcEmail">@Model.PqcEmail</a>
+                        </dd>
+
+                        <dt class="col-sm-4 text-muted">Số điện thoại (PqcPhone):</dt>
+                        <dd class="col-sm-8">@Model.PqcPhone</dd>
+
+                        <dt class="col-sm-4 text-muted">Trạng thái (PqcActive):</dt>
+                        <dd class="col-sm-8">
+                            @if (Model.PqcActive == true)
+                            {
+                                <span class="badge bg-success">Đang học (Hoạt động)</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-secondary">Tạm dừng (Khóa)</span>
+                            }
+                        </dd>
+                    </dl>
+
+                    <div class="mt-4 pt-3 border-top d-flex">
+                        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning me-2">
+                            Chỉnh sửa
+                        </a>
+                        <a asp-action="Index" class="btn btn-secondary">
+                            Quay lại danh sách
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

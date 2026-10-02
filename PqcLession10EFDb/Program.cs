@@ -1,3 +1,4 @@
+// PqcLession10 - Entity Framework Core Database First
 using Microsoft.EntityFrameworkCore;
 using PqcLession10EFDb.Models;
 

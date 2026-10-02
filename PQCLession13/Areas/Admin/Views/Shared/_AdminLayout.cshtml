@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - PQC Admin Control Panel</title>
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    
+    <!-- Slide 16: Kéo thả CSS tùy biến vào Admin Layout -->
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/pqc-custom.css" asp-append-version="true" />
+
+    @await RenderSectionAsync("Styles", required: false)
+</head>
+<body class="bg-light">
+    <div class="pqc-admin-wrapper">
+        <!-- Sidebar bên trái theo chuẩn Admin Template (Slide 22 - 23) -->
+        <aside class="pqc-admin-sidebar">
+            <div class="pqc-sidebar-header">
+                <i class="bi bi-shield-check text-primary fs-3"></i>
+                <div>
+                    <h6 class="mb-0 text-white fw-bold">PQC ADMIN</h6>
+                    <small class="text-secondary" style="font-size: 0.75rem;">Phùng Quang Cường (2410900015)</small>
+                </div>
+            </div>
+
+            <div class="pqc-sidebar-menu">
+                <div class="text-uppercase text-secondary small fw-bold px-3 mb-2" style="font-size: 0.7rem; letter-spacing: 1px;">
+                    Hệ Thống Quản Trị
+                </div>
+                
+                <a class="pqc-sidebar-link" asp-area="Admin" asp-controller="Dashboard" asp-action="Index">
+                    <i class="bi bi-speedometer2"></i>
+                    <span>Bảng Điều Khiển</span>
+                </a>
+                
+                <a class="pqc-sidebar-link" asp-area="Admin" asp-controller="Product" asp-action="Index">
+                    <i class="bi bi-box-seam"></i>
+                    <span>Quản Lý Sản Phẩm</span>
+                </a>
+
+                <a class="pqc-sidebar-link" href="javascript:void(0)" data-pqc-action="Quản lý Danh mục">
+                    <i class="bi bi-tags"></i>
+                    <span>Danh Mục Hàng</span>
+                </a>
+
+                <a class="pqc-sidebar-link" href="javascript:void(0)" data-pqc-action="Quản lý Đơn hàng">
+                    <i class="bi bi-receipt"></i>
+                    <span>Đơn Hàng Mẫu</span>
+                </a>
+
+                <div class="text-uppercase text-secondary small fw-bold px-3 mt-4 mb-2" style="font-size: 0.7rem; letter-spacing: 1px;">
+                    Chuyển Đổi Layout Demo
+                </div>
+
+                <a class="pqc-sidebar-link text-warning" asp-area="" asp-controller="Home" asp-action="CustomerDemo">
+                    <i class="bi bi-arrow-left-circle"></i>
+                    <span>Xem Layout Khách Hàng</span>
+                </a>
+
+                <a class="pqc-sidebar-link text-info" asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="bi bi-house-door"></i>
+                    <span>Về Trang Chủ Bài 13</span>
+                </a>
+            </div>
+
+            <div class="p-3 border-top border-secondary text-secondary small">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success rounded-circle p-1"> </span>
+                    <span>Admin Area Active</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Phần Main Content của Admin -->
+        <div class="pqc-admin-main">
+            <!-- Topbar của Admin -->
+            <header class="pqc-admin-topbar">
+                <div class="d-flex align-items-center gap-3">
+                    <button class="btn btn-sm btn-outline-secondary d-md-none" type="button">
+                        <i class="bi bi-list"></i>
+                    </button>
+                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-3 py-2">
+                        <i class="bi bi-layers me-1"></i> Area: <strong>Admin</strong> | Layout: <strong>_AdminLayout.cshtml</strong>
+                    </span>
+                </div>
+
+                <div class="d-flex align-items-center gap-3">
+                    <div class="dropdown">
+                        <button class="btn btn-sm btn-outline-secondary position-relative" type="button" data-pqc-action="Xem thông báo hệ thống">
+                            <i class="bi bi-bell"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle"></span>
+                        </button>
+                    </div>
+
+                    <div class="d-flex align-items-center gap-2 border-start ps-3">
+                        <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center fw-bold" style="width: 34px; height: 34px;">
+                            PQC
+                        </div>
+                        <div class="d-none d-sm-block text-start">
+                            <div class="fw-semibold small lh-1">Phùng Quang Cường</div>
+                            <small class="text-muted" style="font-size: 0.75rem;">Administrator</small>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Vùng nội dung RenderBody() -->
+            <main class="pqc-admin-content">
+                @RenderBody()
+            </main>
+
+            <!-- Chân trang Admin -->
+            <footer class="bg-white border-top py-3 px-4 text-muted small d-flex justify-content-between align-items-center">
+                <span>&copy; 2026 PQC Admin Portal - Lesson 13 (ASP.NET Core MVC Layout & Areas)</span>
+                <span>K24CNT1 - MSV: 2410900015</span>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <!-- Slide 19-21: Custom JS xử lý active link khi click -->
+    <script src="~/js/pqc-custom.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,207 @@
+/* ========================================================
+   PQCLession13 - Custom CSS theo hướng dẫn Slide 15 - 18
+   Tác giả: Phùng Quang Cường (2410900015)
+   ======================================================== */
+
+:root {
+    --pqc-primary: #0d6efd;
+    --pqc-primary-dark: #0a58ca;
+    --pqc-secondary: #6c757d;
+    --pqc-success: #198754;
+    --pqc-warning: #ffc107;
+    --pqc-danger: #dc3545;
+    --pqc-dark: #212529;
+    --pqc-sidebar-bg: #1e293b;
+    --pqc-sidebar-active: #3b82f6;
+    --pqc-accent-gradient: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%);
+    --pqc-admin-gradient: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+}
+
+/* Custom Header & Navigation */
+.pqc-navbar-custom {
+    background: #ffffff;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    border-bottom: 2px solid #e9ecef;
+}
+
+.pqc-nav-link {
+    font-weight: 500;
+    color: #495057 !important;
+    padding: 8px 16px !important;
+    border-radius: 6px;
+    margin: 0 4px;
+    transition: all 0.25s ease-in-out;
+}
+
+.pqc-nav-link:hover {
+    color: var(--pqc-primary) !important;
+    background-color: #f0f7ff;
+}
+
+/* Slide 21: Link nào được click / active thì có màu nổi bật */
+.pqc-nav-link.active,
+.pqc-nav-link.pqc-clicked {
+    color: #ffffff !important;
+    background: var(--pqc-accent-gradient) !important;
+    box-shadow: 0 4px 10px rgba(13, 110, 253, 0.35);
+    font-weight: 600;
+}
+
+/* Hero Banner cho Customer Layout */
+.pqc-hero-banner {
+    background: var(--pqc-accent-gradient);
+    color: #ffffff;
+    border-radius: 16px;
+    padding: 48px 32px;
+    margin-bottom: 36px;
+    box-shadow: 0 10px 25px rgba(13, 110, 253, 0.2);
+}
+
+.pqc-hero-badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+    color: #ffffff;
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+/* Product Card Styling */
+.pqc-product-card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #ffffff;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.pqc-product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+}
+
+.pqc-product-card .card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.pqc-price-tag {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #d63384;
+}
+
+/* Admin Layout Styling */
+.pqc-admin-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+.pqc-admin-sidebar {
+    width: 260px;
+    background: var(--pqc-admin-gradient);
+    color: #cbd5e1;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    border-right: 1px solid #334155;
+    transition: width 0.3s ease;
+}
+
+.pqc-sidebar-header {
+    padding: 24px 20px;
+    border-bottom: 1px solid #334155;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.pqc-sidebar-menu {
+    padding: 16px 12px;
+    flex-grow: 1;
+}
+
+.pqc-sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    color: #94a3b8;
+    text-decoration: none;
+    border-radius: 8px;
+    margin-bottom: 6px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.pqc-sidebar-link:hover {
+    background: #334155;
+    color: #ffffff;
+}
+
+.pqc-sidebar-link.active {
+    background: var(--pqc-sidebar-active);
+    color: #ffffff;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+.pqc-admin-main {
+    flex-grow: 1;
+    background: #f8fafc;
+    display: flex;
+    flex-direction: column;
+}
+
+.pqc-admin-topbar {
+    background: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
+    padding: 14px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pqc-admin-content {
+    padding: 28px;
+    flex-grow: 1;
+}
+
+/* Stat Cards in Admin */
+.pqc-stat-card {
+    border-radius: 12px;
+    border: none;
+    padding: 20px;
+    background: #ffffff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.pqc-stat-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+/* Badge Layout Demonstration Tag */
+.pqc-demo-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    background: #e0f2fe;
+    color: #0369a1;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}

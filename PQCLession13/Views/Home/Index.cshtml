@@ -1,0 +1,136 @@
+@{
+    ViewData["Title"] = "Trang Chủ - Demo Lesson 13";
+}
+
+<div class="pqc-hero-banner text-center position-relative overflow-hidden mb-5">
+    <div class="position-relative" style="z-index: 2;">
+        <span class="pqc-hero-badge">
+            <i class="bi bi-mortarboard-fill me-1"></i> BÀI THỰC HÀNH LESSON 13 / SESSION 07
+        </span>
+        <h1 class="display-5 fw-bold mb-3">TÌM HIỂU VỀ LAYOUT TRONG ASP.NET CORE MVC</h1>
+        <p class="lead mb-4 mx-auto" style="max-width: 780px;">
+            Demo hoàn chỉnh hệ thống <strong>Layout mặc định</strong>, <strong>Custom Layout (_LayoutHome)</strong>, 
+            <strong>CSS/JS tùy biến (Slide 16 & 21)</strong> và phân vùng <strong>Area Admin (_AdminLayout)</strong>.
+        </p>
+        <div class="d-flex justify-content-center gap-3 flex-wrap">
+            <a asp-action="CustomerDemo" class="btn btn-light btn-lg px-4 fw-semibold text-primary shadow-sm">
+                <i class="bi bi-display me-2"></i> Trải Nghiệm Customer Layout
+            </a>
+            <a asp-area="Admin" asp-controller="Dashboard" asp-action="Index" class="btn btn-outline-light btn-lg px-4 fw-semibold">
+                <i class="bi bi-shield-shaded me-2"></i> Khám Phá Admin Area Layout
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Khối 3 cột giới thiệu kiến thức trọng tâm theo Slide -->
+<div class="row g-4 mb-5">
+    <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm rounded-4 p-3">
+            <div class="card-body">
+                <div class="pqc-stat-icon bg-primary-subtle text-primary mb-3">
+                    <i class="bi bi-window-stack"></i>
+                </div>
+                <h5 class="fw-bold text-dark">1. Custom Layout</h5>
+                <p class="text-muted small">
+                    ASP.NET Core MVC cho phép tạo nhiều Layout khác nhau cho từng nhóm đối tượng người dùng.
+                </p>
+                <ul class="small text-muted ps-3 mb-4">
+                    <li><code>_Layout.cshtml</code>: Layout mặc định</li>
+                    <li><code>_LayoutHome.cshtml</code>: Layout khách hàng</li>
+                    <li>Chỉ định: <code>@@{ Layout = "_LayoutHome"; }</code></li>
+                </ul>
+                <a asp-action="CustomerDemo" class="btn btn-outline-primary btn-sm w-100">
+                    <i class="bi bi-arrow-right-circle me-1"></i> Xem demo Customer
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="col-12 h-100">
+            <div class="card h-100 border-0 shadow-sm rounded-4 p-3">
+                <div class="card-body">
+                    <div class="pqc-stat-icon bg-success-subtle text-success mb-3">
+                        <i class="bi bi-palette-fill"></i>
+                    </div>
+                    <h5 class="fw-bold text-dark">2. CSS & JS Tùy Biến (Slide 16 & 21)</h5>
+                    <p class="text-muted small">
+                        Kéo thả file CSS và JS vào Layout để làm đẹp trang và tương tác mượt mà.
+                    </p>
+                    <ul class="small text-muted ps-3 mb-4">
+                        <li><strong>Slide 16:</strong> Nhúng <code>pqc-custom.css</code> vào file Layout</li>
+                        <li><strong>Slide 21:</strong> JS tự đổi màu active link menu khi click</li>
+                        <li>Nút tương tác có Toast thông báo trực quan</li>
+                    </ul>
+                    <a asp-action="About" class="btn btn-outline-success btn-sm w-100">
+                        <i class="bi bi-file-earmark-code me-1"></i> Xem chi tiết mã nguồn
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm rounded-4 p-3">
+            <div class="card-body">
+                <div class="pqc-stat-icon bg-warning-subtle text-warning mb-3">
+                    <i class="bi bi-diagram-3-fill"></i>
+                </div>
+                <h5 class="fw-bold text-dark">3. Phân Vùng Area (Slide 22 - 23)</h5>
+                <p class="text-muted small">
+                    Tổ chức mã nguồn theo phân hệ độc lập cho khu vực quản trị viên (Admin Area).
+                </p>
+                <ul class="small text-muted ps-3 mb-4">
+                    <li>Thư mục <code>Areas/Admin/</code></li>
+                    <li>Layout riêng: <code>_AdminLayout.cshtml</code> (Sidebar + Topbar)</li>
+                    <li>Route: <code>{area:exists}/{controller}/{action}</code></li>
+                </ul>
+                <a asp-area="Admin" asp-controller="Dashboard" asp-action="Index" class="btn btn-outline-warning btn-sm w-100">
+                    <i class="bi bi-shield-lock me-1"></i> Truy cập Area Admin
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bảng so sánh giữa các loại Layout trong dự án -->
+<div class="card border-0 shadow-sm rounded-4 p-4 mb-4">
+    <h5 class="fw-bold text-dark mb-3"><i class="bi bi-table me-2 text-primary"></i> Bảng tổng hợp các Layout trong bài thực hành PQCLession13</h5>
+    <div class="table-responsive">
+        <table class="table table-bordered align-middle mb-0">
+            <thead class="table-light">
+                <tr>
+                    <th>Tên Layout</th>
+                    <th>Vị trí tệp</th>
+                    <th>Mục đích sử dụng</th>
+                    <th>CSS / JS áp dụng</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong class="text-primary">_Layout.cshtml</strong></td>
+                    <td><code>Views/Shared/_Layout.cshtml</code></td>
+                    <td>Layout mặc định của website khi không chỉ định layout riêng</td>
+                    <td><code>site.css</code>, <code>pqc-custom.css</code></td>
+                    <td><span class="badge bg-secondary">Mặc định</span></td>
+                </tr>
+                <tr>
+                    <td><strong class="text-success">_LayoutHome.cshtml</strong></td>
+                    <td><code>Views/Shared/_LayoutHome.cshtml</code></td>
+                    <td>Layout người dùng / khách hàng mua hàng (Customer Portal)</td>
+                    <td><code>pqc-custom.css</code>, <code>pqc-custom.js</code> (Slide 16 & 21)</td>
+                    <td><a asp-action="CustomerDemo" class="btn btn-sm btn-success">Mở xem</a></td>
+                </tr>
+                <tr>
+                    <td><strong class="text-warning">_AdminLayout.cshtml</strong></td>
+                    <td><code>Areas/Admin/Views/Shared/_AdminLayout.cshtml</code></td>
+                    <td>Layout khu vực quản trị với Sidebar và Topbar (Admin Area)</td>
+                    <td>Theme tối Sidebar, quản lý sản phẩm, thống kê</td>
+                    <td><a asp-area="Admin" asp-controller="Dashboard" asp-action="Index" class="btn btn-sm btn-warning">Mở xem</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

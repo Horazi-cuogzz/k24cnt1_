@@ -1,0 +1,123 @@
+@model IEnumerable<PQCLession13.Models.PqcProduct>
+
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h3 class="fw-bold mb-1 text-dark">Bảng Điều Khiển Quản Trị</h3>
+        <p class="text-muted mb-0 small">Khu vực phân vùng chức năng Area: <code>Admin</code> với Layout riêng biệt <code>_AdminLayout.cshtml</code></p>
+    </div>
+    <div>
+        <a asp-action="Index" asp-controller="Product" class="btn btn-primary btn-sm">
+            <i class="bi bi-box-seam me-1"></i> Quản lý sản phẩm
+        </a>
+    </div>
+</div>
+
+<!-- 4 Thẻ thống kê đẹp mắt -->
+<div class="row g-3 mb-4">
+    <div class="col-sm-6 col-xl-3">
+        <div class="pqc-stat-card">
+            <div>
+                <span class="text-muted small fw-semibold">Tổng sản phẩm</span>
+                <h3 class="fw-bold mb-0 mt-1">@ViewBag.TotalProducts</h3>
+                <small class="text-success"><i class="bi bi-arrow-up-short"></i> Đang hoạt động</small>
+            </div>
+            <div class="pqc-stat-icon bg-primary-subtle text-primary">
+                <i class="bi bi-box"></i>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xl-3">
+        <div class="pqc-stat-card">
+            <div>
+                <span class="text-muted small fw-semibold">Sản phẩm kích hoạt</span>
+                <h3 class="fw-bold mb-0 mt-1">@ViewBag.ActiveProducts</h3>
+                <small class="text-primary"><i class="bi bi-check-circle"></i> Sẵn sàng bán</small>
+            </div>
+            <div class="pqc-stat-icon bg-success-subtle text-success">
+                <i class="bi bi-check2-circle"></i>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xl-3">
+        <div class="pqc-stat-card">
+            <div>
+                <span class="text-muted small fw-semibold">Ước tính giá trị kho</span>
+                <h3 class="fw-bold mb-0 mt-1 text-truncate" style="font-size: 1.3rem;">@String.Format("{0:N0} đ", ViewBag.TotalValue)</h3>
+                <small class="text-warning"><i class="bi bi-currency-dollar"></i> Tổng tồn kho</small>
+            </div>
+            <div class="pqc-stat-icon bg-warning-subtle text-warning">
+                <i class="bi bi-wallet2"></i>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xl-3">
+        <div class="pqc-stat-card">
+            <div>
+                <span class="text-muted small fw-semibold">Cấu trúc Layout</span>
+                <h3 class="fw-bold mb-0 mt-1" style="font-size: 1.3rem;">Area: Admin</h3>
+                <small class="text-info"><i class="bi bi-code-slash"></i> Slide 22 - 23 Demo</small>
+            </div>
+            <div class="pqc-stat-icon bg-info-subtle text-info">
+                <i class="bi bi-diagram-3"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bảng sản phẩm mẫu gần đây -->
+<div class="card border-0 shadow-sm rounded-3 mb-4">
+    <div class="card-header bg-white py-3 border-0 d-flex justify-content-between align-items-center">
+        <h5 class="fw-bold mb-0 text-dark"><i class="bi bi-clock-history me-2 text-primary"></i> Sản phẩm gần đây trong kho</h5>
+        <a asp-action="Index" asp-controller="Product" class="btn btn-outline-primary btn-sm">Xem tất cả</a>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+            <thead class="table-light">
+                <tr>
+                    <th>Mã</th>
+                    <th>Hình ảnh</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Danh mục</th>
+                    <th>Giá niêm yết</th>
+                    <th>Trạng thái</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="fw-bold text-muted">#@item.Id</td>
+                        <td>
+                            <img src="@item.PqcImageUrl" alt="@item.PqcName" class="rounded" style="width: 45px; height: 45px; object-fit: cover;" />
+                        </td>
+                        <td class="fw-semibold">@item.PqcName</td>
+                        <td><span class="badge bg-secondary-subtle text-secondary">@item.PqcCategory</span></td>
+                        <td class="text-danger fw-bold">@String.Format("{0:N0} đ", item.PqcPrice)</td>
+                        <td>
+                            @if (item.PqcStatus)
+                            {
+                                <span class="badge bg-success-subtle text-success">Còn hàng</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-danger-subtle text-danger">Hết hàng</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="alert alert-info border-0 shadow-sm d-flex align-items-center gap-3">
+    <i class="bi bi-info-circle-fill fs-3 text-info"></i>
+    <div>
+        <strong>Ghi chú kiến thức Lesson 13:</strong>
+        <div>Trang này đang sử dụng Layout <code>_AdminLayout.cshtml</code> thông qua cơ chế <code>_ViewStart.cshtml</code> của Area Admin. Khi chuyển sang giao diện người dùng, hệ thống sẽ sử dụng <code>_LayoutHome.cshtml</code> hoặc <code>_Layout.cshtml</code>.</div>
+    </div>
+</div>

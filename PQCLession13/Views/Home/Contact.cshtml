@@ -1,0 +1,42 @@
+@{
+    Layout = "_LayoutHome";
+    ViewData["Title"] = "Liên Hệ - PQC Store";
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card border-0 shadow-sm rounded-4 p-4">
+            <h4 class="fw-bold text-primary mb-3">
+                <i class="bi bi-chat-dots me-2"></i> Gửi Tin Nhắn Cho Chúng Tôi
+            </h4>
+            <p class="text-muted small">Đây là trang mẫu sử dụng Layout khách hàng <code>_LayoutHome.cshtml</code> với các trường nhập liệu tương tác.</p>
+
+            <form onsubmit="event.preventDefault(); window.pqcShowToast('Cảm ơn bạn đã liên hệ! PQC sẽ phản hồi sớm nhất.', 'success'); this.reset();">
+                <div class="row g-3 mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label small fw-semibold">Họ và tên</label>
+                        <input type="text" class="form-control" placeholder="Nguyễn Văn A" required />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label small fw-semibold">Email liên hệ</label>
+                        <input type="email" class="form-control" placeholder="example@email.com" required />
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label small fw-semibold">Chủ đề</label>
+                    <input type="text" class="form-control" placeholder="Góp ý về giao diện / Layout..." required />
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label small fw-semibold">Nội dung</label>
+                    <textarea class="form-control" rows="4" placeholder="Nhập tin nhắn..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary px-4">
+                    <i class="bi bi-send me-1"></i> Gửi thông tin
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

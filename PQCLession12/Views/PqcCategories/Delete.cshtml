@@ -1,0 +1,59 @@
+@model PQCLession12.Models.PqcCategory
+@{
+    ViewData["Title"] = "Xác nhận xóa danh mục - PQC";
+}
+
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-md-7">
+            <div class="card shadow-sm border-danger">
+                <div class="card-header bg-danger text-white">
+                    <h5 class="mb-0">Xác nhận xóa danh mục (PQC)</h5>
+                    <small>Phùng Quang Cường - 2410900015</small>
+                </div>
+                <div class="card-body p-4">
+                    <div class="alert alert-warning" role="alert">
+                        <strong>Cảnh báo:</strong> Bạn có chắc chắn muốn xóa danh mục này?
+                        @if (Model.PqcProducts != null && Model.PqcProducts.Any())
+                        {
+                            <div class="mt-2 text-danger">
+                                <strong>Lưu ý:</strong> Danh mục này đang chứa <strong>@Model.PqcProducts.Count</strong> sản phẩm. Việc xóa danh mục sẽ xóa toàn bộ sản phẩm liên quan!
+                            </div>
+                        }
+                    </div>
+
+                    <dl class="row mb-4">
+                        <dt class="col-sm-4 text-muted">@Html.DisplayNameFor(model => model.Id):</dt>
+                        <dd class="col-sm-8"><span class="badge bg-secondary">#@Model.Id</span></dd>
+
+                        <dt class="col-sm-4 text-muted">@Html.DisplayNameFor(model => model.PqcName):</dt>
+                        <dd class="col-sm-8"><strong class="fs-5 text-dark">@Model.PqcName</strong></dd>
+
+                        <dt class="col-sm-4 text-muted">@Html.DisplayNameFor(model => model.PqcStatus):</dt>
+                        <dd class="col-sm-8">
+                            @if (Model.PqcStatus == 1)
+                            {
+                                <span class="badge bg-success">Hiển thị</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-secondary">Tạm khóa</span>
+                            }
+                        </dd>
+
+                        <dt class="col-sm-4 text-muted">@Html.DisplayNameFor(model => model.PqcCreatedDate):</dt>
+                        <dd class="col-sm-8">@Model.PqcCreatedDate.ToString("dd/MM/yyyy HH:mm")</dd>
+                    </dl>
+
+                    <form asp-action="Delete" method="post">
+                        <input type="hidden" asp-for="Id" />
+                        <div class="d-flex justify-content-between pt-3 border-top">
+                            <a asp-action="Index" class="btn btn-outline-secondary">Hủy bỏ</a>
+                            <button type="submit" class="btn btn-danger px-4">Xác nhận xóa</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

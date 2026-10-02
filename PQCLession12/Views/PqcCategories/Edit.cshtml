@@ -1,0 +1,57 @@
+@model PQCLession12.Models.PqcCategory
+@{
+    ViewData["Title"] = "Chỉnh sửa danh mục - PQC";
+}
+
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-md-7">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Chỉnh sửa danh mục (PQC)</h5>
+                    <small>Phùng Quang Cường - 2410900015</small>
+                </div>
+                <div class="card-body p-4">
+                    <form asp-action="Edit" method="post">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+                        <input type="hidden" asp-for="Id" />
+
+                        <div class="mb-3">
+                            <label class="form-label text-muted">Mã danh mục</label>
+                            <input class="form-control" value="#@Model.Id" disabled />
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="PqcName" class="form-label"></label> <span class="text-danger">*</span>
+                            <input asp-for="PqcName" class="form-control" />
+                            <span asp-validation-for="PqcName" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="PqcStatus" class="form-label"></label>
+                            <select asp-for="PqcStatus" class="form-select">
+                                <option value="1">Hiển thị</option>
+                                <option value="0">Tạm khóa</option>
+                            </select>
+                            <span asp-validation-for="PqcStatus" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label text-muted">Ngày tạo</label>
+                            <input class="form-control" value="@Model.PqcCreatedDate.ToString("dd/MM/yyyy HH:mm")" disabled />
+                        </div>
+
+                        <div class="d-flex justify-content-between pt-3 border-top">
+                            <a asp-action="Index" class="btn btn-outline-secondary">Quay lại danh sách</a>
+                            <button type="submit" class="btn btn-primary px-4">Cập nhật</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

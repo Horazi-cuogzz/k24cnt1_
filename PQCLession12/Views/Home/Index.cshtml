@@ -1,0 +1,123 @@
+@model IEnumerable<PQCLession12.Models.PqcProduct>
+@{
+    ViewData["Title"] = "Trang chủ - PQC";
+}
+
+<div class="py-3">
+    <!-- Banner Giới thiệu -->
+    <div class="p-4 p-md-5 mb-4 rounded-3 text-white bg-primary bg-gradient shadow-sm">
+        <div class="col-md-9 px-0">
+            <h1 class="display-6 fw-bold">Dự án ASP.NET Core MVC - Entity Framework Code-First</h1>
+            <p class="lead my-3">
+                Thực hành Lab 06: Thao tác CSDL với Entity Framework Core Code-First.
+                Xây dựng quản lý Danh mục (PqcCategory) và Sản phẩm (PqcProduct) có upload hình ảnh.
+            </p>
+            <div class="d-flex flex-wrap gap-2">
+                <a asp-controller="PqcCategories" asp-action="Index" class="btn btn-light text-primary fw-bold">
+                    <i class="bi bi-folder2-open"></i> Quản lý Danh mục
+                </a>
+                <a asp-controller="PqcProducts" asp-action="Index" class="btn btn-outline-light fw-bold">
+                    <i class="bi bi-box-seam"></i> Quản lý Sản phẩm
+                </a>
+                <a asp-controller="Home" asp-action="Product" class="btn btn-warning text-dark fw-bold">
+                    <i class="bi bi-grid-3x3-gap"></i> Xem lưới Sản phẩm (Bài 2)
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Thông tin sinh viên & Thống kê -->
+    <div class="row g-3 mb-4">
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm bg-light h-100">
+                <div class="card-body">
+                    <h6 class="text-primary text-uppercase fw-bold"><i class="bi bi-person-circle"></i> Thông tin sinh viên</h6>
+                    <ul class="list-unstyled mb-0 mt-2 small">
+                        <li>Họ và tên: <strong>Phùng Quang Cường</strong></li>
+                        <li>Mã sinh viên: <strong>2410900015</strong></li>
+                        <li>Lớp: <strong>K24CNT1</strong></li>
+                        <li>CSDL SQL Server: <strong>NETCORE</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm text-white bg-success h-100">
+                <div class="card-body d-flex align-items-center justify-content-between">
+                    <div>
+                        <h6 class="text-uppercase mb-1">Tổng Danh mục</h6>
+                        <h2 class="mb-0 fw-bold">@ViewBag.TotalCategories</h2>
+                    </div>
+                    <i class="bi bi-folder-check display-5 opacity-75"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm text-white bg-info h-100">
+                <div class="card-body d-flex align-items-center justify-content-between">
+                    <div>
+                        <h6 class="text-uppercase mb-1">Tổng Sản phẩm</h6>
+                        <h2 class="mb-0 fw-bold">@ViewBag.TotalProducts</h2>
+                    </div>
+                    <i class="bi bi-box2 display-5 opacity-75"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Danh sách sản phẩm mới nhất -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="text-dark mb-0"><i class="bi bi-stars text-warning"></i> Sản phẩm mới nhất</h4>
+        <a asp-controller="Home" asp-action="Product" class="btn btn-sm btn-outline-primary">Xem tất cả &raquo;</a>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info py-4 text-center">
+            <p class="mb-2">Hiện chưa có sản phẩm nào trong CSDL <strong>NETCORE</strong>.</p>
+            <a asp-controller="PqcProducts" asp-action="Create" class="btn btn-primary btn-sm">+ Thêm sản phẩm đầu tiên</a>
+        </div>
+    }
+    else
+    {
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
+            @foreach (var item in Model)
+            {
+                <div class="col">
+                    <div class="card h-100 shadow-sm border-0">
+                        <div class="bg-light text-center p-2 rounded-top position-relative" style="height: 180px;">
+                            @if (!string.IsNullOrEmpty(item.PqcImage))
+                            {
+                                <img src="~/Product/@item.PqcImage" class="img-fluid h-100" style="object-fit: contain;" alt="@item.PqcName" onerror="this.onerror=null;this.src='https://placehold.co/200x200?text=PQC+Product';" />
+                            }
+                            else
+                            {
+                                <div class="d-flex align-items-center justify-content-center h-100 text-muted">
+                                    <i class="bi bi-image fs-1"></i>
+                                </div>
+                            }
+                            <span class="position-absolute top-0 start-0 m-2 badge bg-primary">
+                                @(item.PqcCategory?.PqcName ?? "Chung")
+                            </span>
+                        </div>
+                        <div class="card-body p-3 d-flex flex-column">
+                            <h6 class="card-title fw-bold text-dark text-truncate" title="@item.PqcName">@item.PqcName</h6>
+                            <div class="mt-auto">
+                                <div class="d-flex align-items-baseline justify-content-between">
+                                    <span class="text-success fw-bold">@item.PqcPrice.ToString("#,##0") đ</span>
+                                    @if (item.PqcSalePrice > 0 && item.PqcSalePrice < item.PqcPrice)
+                                    {
+                                        <small class="text-danger text-decoration-line-through">@item.PqcSalePrice.ToString("#,##0") đ</small>
+                                    }
+                                </div>
+                                <a asp-controller="PqcProducts" asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-primary btn-sm w-100 mt-2">
+                                    Chi tiết
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>

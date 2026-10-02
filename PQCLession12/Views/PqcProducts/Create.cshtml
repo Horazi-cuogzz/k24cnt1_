@@ -1,0 +1,97 @@
+@model PQCLession12.Models.PqcProduct
+@{
+    ViewData["Title"] = "Thêm mới sản phẩm - PQC";
+}
+
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0">Thêm mới sản phẩm (PQC)</h5>
+                    <small>Phùng Quang Cường - 2410900015 - Hỗ trợ upload ảnh</small>
+                </div>
+                <div class="card-body p-4">
+                    <form asp-action="Create" method="post" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+                        <div class="row g-3">
+                            <div class="col-md-8">
+                                <label asp-for="PqcName" class="form-label"></label> <span class="text-danger">*</span>
+                                <input asp-for="PqcName" class="form-control" placeholder="Nhập tên sản phẩm..." autofocus />
+                                <span asp-validation-for="PqcName" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label asp-for="PqcCategoryId" class="form-label"></label> <span class="text-danger">*</span>
+                                <select asp-for="PqcCategoryId" class="form-select" asp-items="ViewBag.PqcCategoryId"></select>
+                                <span asp-validation-for="PqcCategoryId" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label asp-for="PqcPrice" class="form-label"></label> <span class="text-danger">*</span>
+                                <div class="input-group">
+                                    <input asp-for="PqcPrice" type="number" step="1000" min="0" class="form-control" />
+                                    <span class="input-group-text">VNĐ</span>
+                                </div>
+                                <span asp-validation-for="PqcPrice" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label asp-for="PqcSalePrice" class="form-label"></label>
+                                <div class="input-group">
+                                    <input asp-for="PqcSalePrice" type="number" step="1000" min="0" class="form-control" />
+                                    <span class="input-group-text">VNĐ</span>
+                                </div>
+                                <span asp-validation-for="PqcSalePrice" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-12">
+                                <label class="form-label">Tải lên hình ảnh sản phẩm</label>
+                                <input type="file" name="imageFile" class="form-control" accept="image/*" id="imageInput" />
+                                <small class="text-muted">Ảnh sẽ được lưu vào thư mục wwwroot/Product theo chuẩn Lab 06</small>
+                                <div class="mt-2" id="previewContainer" style="display:none;">
+                                    <img id="imagePreview" src="#" alt="Preview" class="img-thumbnail" style="max-height: 150px;" />
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label asp-for="PqcStatus" class="form-label"></label>
+                                <select asp-for="PqcStatus" class="form-select">
+                                    <option value="1">Đang bán</option>
+                                    <option value="0">Tạm ngưng</option>
+                                </select>
+                                <span asp-validation-for="PqcStatus" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-12">
+                                <label asp-for="PqcDescriptions" class="form-label"></label>
+                                <textarea asp-for="PqcDescriptions" rows="3" class="form-control" placeholder="Mô tả thông tin chi tiết sản phẩm..."></textarea>
+                                <span asp-validation-for="PqcDescriptions" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between pt-4 mt-3 border-top">
+                            <a asp-action="Index" class="btn btn-outline-secondary">Quay lại danh sách</a>
+                            <button type="submit" class="btn btn-success px-4">Lưu sản phẩm</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        document.getElementById('imageInput').addEventListener('change', function(e) {
+            const [file] = e.target.files;
+            if (file) {
+                const preview = document.getElementById('imagePreview');
+                preview.src = URL.createObjectURL(file);
+                document.getElementById('previewContainer').style.display = 'block';
+            }
+        });
+    </script>
+}

@@ -1,0 +1,50 @@
+<aside class="pqc-sidebar d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 260px; min-height: 100vh;">
+    <a asp-area="Admin" asp-controller="Dashboard" asp-action="Index" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none border-bottom pb-3 w-100">
+        <span class="fs-4 fw-bold text-warning">PQC ADMIN</span>
+    </a>
+    
+    <div class="user-panel mt-3 pb-3 mb-3 border-bottom d-flex align-items-center">
+        <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-2 fw-bold" style="width: 40px; height: 40px;">
+            PQC
+        </div>
+        <div class="info">
+            <div class="fw-bold text-white small">Phùng Quang Cường</div>
+            <div class="text-secondary small">MSV: 2410900015 (K24CNT1)</div>
+        </div>
+    </div>
+
+    <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item mb-1">
+            <a asp-area="Admin" asp-controller="Dashboard" asp-action="Index" class="nav-link text-white">
+                📊 Bảng Điều Khiển
+            </a>
+        </li>
+        <li class="nav-item mb-1">
+            <a asp-area="Admin" asp-controller="Category" asp-action="Index" class="nav-link text-white">
+                📁 Quản Lý Danh Mục
+            </a>
+        </li>
+        <li class="nav-item mb-1">
+            <a asp-area="Admin" asp-controller="Product" asp-action="Index" class="nav-link text-white">
+                📦 Quản Lý Sản Phẩm
+            </a>
+        </li>
+        <li class="nav-item mb-1">
+            <a asp-area="Admin" asp-controller="Banner" asp-action="Index" class="nav-link text-white">
+                🖼️ Quản Lý Banner
+            </a>
+        </li>
+        <li class="nav-item mb-1">
+            <a asp-area="Admin" asp-controller="Blog" asp-action="Index" class="nav-link text-white">
+                📰 Quản Lý Bài Viết
+            </a>
+        </li>
+    </ul>
+
+    <hr>
+    <div class="dropdown">
+        <a asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-outline-warning btn-sm w-100">
+            ← Quay Lại Website
+        </a>
+    </div>
+</aside>

@@ -1,0 +1,128 @@
+@model IEnumerable<PQCLession14.Models.Product>
+@{
+    ViewData["Title"] = "Trang Chủ";
+}
+
+<section class="bg-dark text-white py-5" style="background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);">
+    <div class="container py-4 text-center">
+        <h1 class="display-4 fw-bold mb-3">CHÀO MỪNG ĐẾN VỚI PQC STORE</h1>
+        <p class="lead mb-4 mx-auto" style="max-width: 750px;">
+            Trải nghiệm các sản phẩm công nghệ thế hệ mới với hiệu năng vượt trội, thiết kế sang trọng và ưu đãi đặc quyền năm 2026.
+        </p>
+        <div class="d-flex justify-content-center gap-3">
+            <a asp-area="Admin" asp-controller="Dashboard" asp-action="Index" class="btn btn-warning btn-lg fw-bold px-4">
+                Bảng Điều Khiển Quản Trị
+            </a>
+            <a asp-action="Privacy" class="btn btn-outline-light btn-lg px-4">
+                Tìm Hiểu Thêm
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h6 class="text-primary text-uppercase fw-bold letter-spacing-1">Cam Kết Dịch Vụ</h6>
+            <h2 class="fw-bold">TẠI SAO LỰA CHỌN PQC STORE?</h2>
+            <div class="mx-auto bg-primary mt-2" style="height: 3px; width: 60px;"></div>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm text-center p-4">
+                    <div class="card-body">
+                        <div class="bg-primary bg-opacity-10 text-primary rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 70px; height: 70px; font-size: 1.8rem; font-weight: bold;">
+                            ✓
+                        </div>
+                        <h4 class="card-title fw-bold">Chính Hãng 100%</h4>
+                        <p class="card-text text-muted">
+                            Mọi thiết bị tại cửa hàng đều được phân phối chính ngạch với chế độ bảo hành 12 tháng 1 đổi 1.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm text-center p-4">
+                    <div class="card-body">
+                        <div class="bg-warning bg-opacity-10 text-warning rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 70px; height: 70px; font-size: 1.8rem; font-weight: bold;">
+                            ★
+                        </div>
+                        <h4 class="card-title fw-bold">Giá Tốt & Ưu Đãi</h4>
+                        <p class="card-text text-muted">
+                            Mức giá cạnh tranh nhất thị trường kèm quà tặng phụ kiện giá trị khi mua sắm trực tuyến.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm text-center p-4">
+                    <div class="card-body">
+                        <div class="bg-success bg-opacity-10 text-success rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 70px; height: 70px; font-size: 1.8rem; font-weight: bold;">
+                            ⚡
+                        </div>
+                        <h4 class="card-title fw-bold">Giao Hàng Siêu Tốc</h4>
+                        <p class="card-text text-muted">
+                            Hỗ trợ giao hàng hỏa tốc trong 2 giờ tại nội thành Hà Nội và miễn phí vận chuyển toàn quốc.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-end mb-4">
+            <div>
+                <h6 class="text-primary text-uppercase fw-bold">Sản Phẩm Mới</h6>
+                <h2 class="fw-bold mb-0">DANH MỤC THIẾT BỊ NỔI BẬT</h2>
+            </div>
+            <a asp-area="Admin" asp-controller="Product" asp-action="Index" class="btn btn-outline-primary btn-sm">
+                Quản lý sản phẩm &rarr;
+            </a>
+        </div>
+
+        <div class="row g-4">
+            @if (Model != null && Model.Any())
+            {
+                foreach (var item in Model)
+                {
+                    <div class="col-lg-3 col-md-6">
+                        <div class="card h-100 border shadow-sm">
+                            <div class="bg-secondary bg-opacity-10 text-center py-4 text-muted fw-bold" style="min-height: 160px; display: flex; align-items: center; justify-content: center;">
+                                <span>[Hình ảnh: @item.Name]</span>
+                            </div>
+                            <div class="card-body d-flex flex-column">
+                                <span class="badge bg-secondary mb-2 align-self-start">@(item.Category?.Name ?? "Thiết bị")</span>
+                                <h5 class="card-title fw-bold">@item.Name</h5>
+                                <p class="card-text text-muted small flex-grow-1">@item.Description</p>
+                                <div class="mt-3">
+                                    <div class="text-danger fw-bold fs-5">@item.Price.ToString("N0") VNĐ</div>
+                                    @if (item.SalePrice > 0)
+                                    {
+                                        <small class="text-muted text-decoration-line-through">@item.SalePrice.ToString("N0") VNĐ</small>
+                                    }
+                                </div>
+                            </div>
+                            <div class="card-footer bg-white border-0 pt-0 pb-3">
+                                <a asp-area="Admin" asp-controller="Product" asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary btn-sm w-100">
+                                    Xem chi tiết
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="col-12 text-center py-4 text-muted">
+                    Chưa có sản phẩm nào được cập nhật trong hệ thống.
+                </div>
+            }
+        </div>
+    </div>
+</section>

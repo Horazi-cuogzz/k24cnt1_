@@ -1,0 +1,46 @@
+@model PQCLession14.Models.Blog
+@{
+    ViewData["Title"] = "Xác nhận xóa bài viết";
+}
+
+<div class="mb-3">
+    <a asp-action="Index" class="btn btn-outline-secondary btn-sm">
+        <i class="bi bi-arrow-left me-1"></i> Quay lại danh sách
+    </a>
+</div>
+
+<div class="card shadow-sm border-0 border-top border-danger border-3">
+    <div class="card-header bg-white py-3">
+        <h5 class="card-title m-0 font-weight-bold text-danger">
+            <i class="bi bi-exclamation-triangle me-1"></i> Xác nhận xóa bài viết
+        </h5>
+    </div>
+    <div class="card-body">
+        <div class="alert alert-warning" role="alert">
+            <i class="bi bi-info-circle me-1"></i>
+            Bạn có chắc chắn muốn xóa bài viết <strong>"@Model.Name"</strong> không? Thao tác này không thể hoàn tác.
+        </div>
+
+        <dl class="row">
+            <dt class="col-sm-3">Mã bài viết (#ID):</dt>
+            <dd class="col-sm-9">@Model.Id</dd>
+
+            <dt class="col-sm-3">Tiêu đề bài viết:</dt>
+            <dd class="col-sm-9 font-weight-bold text-dark">@Model.Name</dd>
+
+            <dt class="col-sm-3">Ngày đăng bài:</dt>
+            <dd class="col-sm-9">@Model.CreatedDate.ToString("dd/MM/yyyy HH:mm:ss")</dd>
+
+            <dt class="col-sm-3">Tóm tắt:</dt>
+            <dd class="col-sm-9">@(string.IsNullOrEmpty(Model.Description) ? "Không có" : Model.Description)</dd>
+        </dl>
+
+        <form asp-action="Delete" method="post">
+            <input type="hidden" asp-for="Id" />
+            <button type="submit" class="btn btn-danger">
+                <i class="bi bi-trash me-1"></i> Xác nhận xóa
+            </button>
+            <a asp-action="Index" class="btn btn-light ms-2">Hủy bỏ</a>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Admin Control Panel | Phùng Quang Cường (2410900015)</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <style>
+        body {
+            background-color: #f4f6f9;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+        .pqc-sidebar .nav-link {
+            border-radius: 4px;
+            padding: 10px 14px;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+        .pqc-sidebar .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #ffc107 !important;
+        }
+        .pqc-content-wrapper {
+            background-color: #f4f6f9;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .content-header {
+            padding: 20px 25px 10px 25px;
+        }
+        .main-content {
+            padding: 0 25px 25px 25px;
+            flex-grow: 1;
+        }
+        .card {
+            border: none;
+            box-shadow: 0 0 1px rgba(0,0,0,.125), 0 1px 3px rgba(0,0,0,.2);
+            border-radius: 6px;
+        }
+        .card-header {
+            background-color: #ffffff;
+            border-bottom: 1px solid rgba(0,0,0,.125);
+            font-weight: 600;
+        }
+    </style>
+    @await RenderSectionAsync("Css", required: false)
+</head>
+<body>
+    <div class="d-flex">
+        <partial name="_AdminSidebar" />
+
+        <div class="pqc-content-wrapper">
+            <partial name="_AdminNavbar" />
+
+            <div class="content-header">
+                <div class="container-fluid p-0 d-flex justify-content-between align-items-center">
+                    <div>
+                        <h3 class="m-0 text-dark fw-bold">@ViewData["Title"]</h3>
+                        <small class="text-muted">Trang quản trị hệ thống ASP.NET Core MVC</small>
+                    </div>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb m-0 bg-transparent p-0 small">
+                            <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Dashboard" asp-action="Index" class="text-decoration-none">Admin</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">@ViewData["Title"]</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+
+            <main class="main-content">
+                @if (TempData["SuccessMessage"] != null)
+                {
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Thành công!</strong> @TempData["SuccessMessage"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
+                @if (TempData["ErrorMessage"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Lỗi:</strong> @TempData["ErrorMessage"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
+
+                @RenderBody()
+            </main>
+
+            <partial name="_AdminFooter" />
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

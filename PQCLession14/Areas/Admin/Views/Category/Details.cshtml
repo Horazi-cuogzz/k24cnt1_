@@ -1,0 +1,145 @@
+@model PQCLession14.Models.Category
+@{
+    ViewData["Title"] = "Chi tiết danh mục";
+}
+
+<div class="mb-3">
+    <a asp-action="Index" class="btn btn-outline-secondary btn-sm">
+        <i class="bi bi-arrow-left me-1"></i> Quay lại danh sách
+    </a>
+</div>
+
+<div class="card shadow-sm border-0 mb-4">
+    <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
+        <h5 class="card-title m-0 font-weight-bold text-info">
+            <i class="bi bi-info-circle me-1"></i> Thông tin danh mục: @Model.Name
+        </h5>
+        <div>
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning btn-sm text-white">
+                <i class="bi bi-pencil-square me-1"></i> Chỉnh sửa
+            </a>
+            <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger btn-sm">
+                <i class="bi bi-trash me-1"></i> Xóa
+            </a>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-3 text-center mb-3">
+                @if (!string.IsNullOrEmpty(Model.Image))
+                {
+                    <img src="@Model.Image" alt="@Model.Name" class="img-fluid rounded border shadow-sm" style="max-height: 200px;" onerror="this.style.display='none';" />
+                }
+                else
+                {
+                    <div class="bg-light border rounded d-flex align-items-center justify-content-center text-muted" style="height: 200px;">
+                        <i class="bi bi-image fs-1"></i>
+                    </div>
+                }
+            </div>
+            <div class="col-md-9">
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <th style="width: 200px;" class="bg-light">Mã danh mục (#ID)</th>
+                            <td>@Model.Id</td>
+                        </tr>
+                        <tr>
+                            <th class="bg-light">Tên danh mục</th>
+                            <td class="font-weight-bold text-dark">@Model.Name</td>
+                        </tr>
+                        <tr>
+                            <th class="bg-light">Trạng thái</th>
+                            <td>
+                                @if (Model.Status == 1)
+                                {
+                                    <span class="badge bg-success">Hiển thị (Kích hoạt)</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-danger">Tạm ẩn (Khóa)</span>
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="bg-light">Ngày khởi tạo</th>
+                            <td>@Model.CreatedDate.ToString("dd/MM/yyyy HH:mm:ss")</td>
+                        </tr>
+                        <tr>
+                            <th class="bg-light">Mô tả</th>
+                            <td>@(string.IsNullOrEmpty(Model.Description) ? "Không có mô tả" : Model.Description)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card shadow-sm border-0">
+    <div class="card-header bg-white py-3">
+        <h6 class="card-title m-0 font-weight-bold text-dark">
+            <i class="bi bi-box-seam me-1"></i> Danh sách sản phẩm thuộc danh mục này (@(Model.Products?.Count ?? 0))
+        </h6>
+    </div>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover table-striped align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th style="width: 60px;">ID</th>
+                        <th>Hình ảnh</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Giá bán</th>
+                        <th>Giá khuyến mãi</th>
+                        <th>Trạng thái</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Products != null && Model.Products.Any())
+                    {
+                        foreach (var prod in Model.Products)
+                        {
+                            <tr>
+                                <td>@prod.Id</td>
+                                <td>
+                                    <img src="@prod.Image" alt="@prod.Name" style="width: 40px; height: 40px; object-fit: cover;" class="rounded border" onerror="this.style.display='none';" />
+                                </td>
+                                <td class="font-weight-bold">@prod.Name</td>
+                                <td class="text-primary font-weight-bold">@prod.Price.ToString("N0") VNĐ</td>
+                                <td>
+                                    @if (prod.SalePrice > 0)
+                                    {
+                                        <span class="text-danger font-weight-bold">@prod.SalePrice.ToString("N0") VNĐ</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">Không giảm</span>
+                                    }
+                                </td>
+                                <td>
+                                    @if (prod.Status == 1)
+                                    {
+                                        <span class="badge bg-success">Đang bán</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-danger">Tạm dừng</span>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="6" class="text-center py-3 text-muted">
+                                Chưa có sản phẩm nào thuộc danh mục này.
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

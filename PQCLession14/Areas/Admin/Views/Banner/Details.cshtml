@@ -1,0 +1,79 @@
+@model PQCLession14.Models.Banner
+@{
+    ViewData["Title"] = "Chi tiết Banner";
+}
+
+<div class="mb-3">
+    <a asp-action="Index" class="btn btn-outline-secondary btn-sm">
+        <i class="bi bi-arrow-left me-1"></i> Quay lại danh sách
+    </a>
+</div>
+
+<div class="card shadow-sm border-0">
+    <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
+        <h5 class="card-title m-0 font-weight-bold text-info">
+            <i class="bi bi-info-circle me-1"></i> Chi tiết Banner: @Model.Name
+        </h5>
+        <div>
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning btn-sm text-white">
+                <i class="bi bi-pencil-square me-1"></i> Chỉnh sửa
+            </a>
+            <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger btn-sm">
+                <i class="bi bi-trash me-1"></i> Xóa
+            </a>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-5 text-center mb-3">
+                @if (!string.IsNullOrEmpty(Model.Image))
+                {
+                    <img src="@Model.Image" alt="@Model.Name" class="img-fluid rounded border shadow-sm" style="max-height: 220px;" onerror="this.style.display='none';" />
+                }
+                else
+                {
+                    <div class="bg-light border rounded d-flex align-items-center justify-content-center text-muted" style="height: 220px;">
+                        <i class="bi bi-image fs-1"></i>
+                    </div>
+                }
+            </div>
+            <div class="col-md-7">
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <th style="width: 200px;" class="bg-light">Mã Banner (#ID)</th>
+                            <td>@Model.Id</td>
+                        </tr>
+                        <tr>
+                            <th class="bg-light">Tên Banner</th>
+                            <td class="font-weight-bold text-dark">@Model.Name</td>
+                        </tr>
+                        <tr>
+                            <th class="bg-light">Độ ưu tiên hiển thị</th>
+                            <td>
+                                <span class="badge bg-secondary">Vị trí: @Model.Prioty</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="bg-light">Trạng thái</th>
+                            <td>
+                                @if (Model.Status == 1)
+                                {
+                                    <span class="badge bg-success">Hiển thị</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-danger">Tạm ẩn</span>
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="bg-light">Mô tả</th>
+                            <td>@(string.IsNullOrEmpty(Model.Description) ? "Không có mô tả" : Model.Description)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,70 @@
+@model PQCLession14.Models.Banner
+@{
+    ViewData["Title"] = "Chỉnh sửa Banner";
+}
+
+<div class="mb-3">
+    <a asp-action="Index" class="btn btn-outline-secondary btn-sm">
+        <i class="bi bi-arrow-left me-1"></i> Quay lại danh sách
+    </a>
+</div>
+
+<div class="card shadow-sm border-0">
+    <div class="card-header bg-white py-3">
+        <h5 class="card-title m-0 font-weight-bold text-warning">
+            <i class="bi bi-pencil-square me-1"></i> Chỉnh sửa Banner: @Model.Name
+        </h5>
+    </div>
+    <div class="card-body">
+        <form asp-action="Edit" method="post">
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+            <input type="hidden" asp-for="Id" />
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="Name" class="form-label font-weight-bold">Tên Banner <span class="text-danger">*</span></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger small"></span>
+                </div>
+
+                <div class="col-md-3 mb-3">
+                    <label asp-for="Prioty" class="form-label font-weight-bold">Độ ưu tiên</label>
+                    <input asp-for="Prioty" class="form-control" type="number" min="1" />
+                    <span asp-validation-for="Prioty" class="text-danger small"></span>
+                </div>
+
+                <div class="col-md-3 mb-3">
+                    <label asp-for="Status" class="form-label font-weight-bold">Trạng thái</label>
+                    <select asp-for="Status" class="form-select">
+                        <option value="1">Hiển thị</option>
+                        <option value="0">Tạm ẩn</option>
+                    </select>
+                    <span asp-validation-for="Status" class="text-danger small"></span>
+                </div>
+
+                <div class="col-12 mb-3">
+                    <label asp-for="Image" class="form-label font-weight-bold">Đường dẫn hình ảnh</label>
+                    <input asp-for="Image" class="form-control" />
+                    <span asp-validation-for="Image" class="text-danger small"></span>
+                </div>
+
+                <div class="col-12 mb-3">
+                    <label asp-for="Description" class="form-label font-weight-bold">Mô tả / Thông điệp quảng cáo</label>
+                    <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+                    <span asp-validation-for="Description" class="text-danger small"></span>
+                </div>
+            </div>
+
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-warning text-white">
+                    <i class="bi bi-save me-1"></i> Cập nhật thay đổi
+                </button>
+                <a asp-action="Index" class="btn btn-light">Hủy bỏ</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

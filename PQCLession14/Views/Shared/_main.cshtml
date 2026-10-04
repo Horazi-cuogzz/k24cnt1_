@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - PQC Store | Phùng Quang Cường (2410900015)</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <style>
+        .pqc-topbar {
+            background-color: #1a252f;
+            color: #bdc3c7;
+            font-size: 0.85rem;
+            padding: 6px 0;
+        }
+        .pqc-header {
+            background: #ffffff;
+            border-bottom: 1px solid #eef2f5;
+            padding: 15px 0;
+        }
+        .pqc-navbar {
+            background: #2c3e50;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .pqc-navbar .nav-link {
+            color: #ecf0f1 !important;
+            font-weight: 500;
+            padding: 12px 18px !important;
+            transition: all 0.2s ease;
+        }
+        .pqc-navbar .nav-link:hover, .pqc-navbar .nav-link.active {
+            background: #34495e;
+            color: #f39c12 !important;
+        }
+        .pqc-footer {
+            background: #1e272e;
+            color: #d2dae2;
+            padding-top: 45px;
+            margin-top: 50px;
+        }
+        .pqc-footer h5 {
+            color: #ffffff;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+            border-left: 3px solid #f39c12;
+            padding-left: 10px;
+        }
+        .pqc-footer a {
+            color: #808e9b;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .pqc-footer a:hover {
+            color: #f39c12;
+        }
+        .pqc-copyright {
+            background: #0f1418;
+            padding: 18px 0;
+            font-size: 0.85rem;
+            color: #808e9b;
+            border-top: 1px solid #2d3436;
+        }
+    </style>
+    @await RenderSectionAsync("Css", required: false)
+</head>
+<body>
+    <div class="pqc-topbar">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div>
+                <span class="me-3">Hotline: 0978.611.889</span>
+                <span>Email: contact@devmaster.edu.vn</span>
+            </div>
+            <div>
+                <span class="me-3">Thời gian: 08:00 - 21:00 (Thứ 2 - Thứ 7)</span>
+                <span class="badge bg-warning text-dark">Sinh viên: Phùng Quang Cường - 2410900015</span>
+            </div>
+        </div>
+    </div>
+
+    <header class="pqc-header">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div>
+                <a asp-controller="Home" asp-action="Index" class="text-decoration-none">
+                    <h2 class="m-0 fw-bold text-primary">PQC <span class="text-warning">STORE</span></h2>
+                    <small class="text-muted">Trung tâm phân phối thiết bị công nghệ & giải pháp số</small>
+                </a>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+                <a asp-area="Admin" asp-controller="Dashboard" asp-action="Index" class="btn btn-outline-danger btn-sm fw-bold">
+                    Vào trang quản trị (Admin Area)
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <nav class="navbar navbar-expand-lg pqc-navbar p-0">
+        <div class="container">
+            <button class="navbar-toggler text-white my-2" type="button" data-bs-toggle="collapse" data-bs-target="#pqcNav" aria-controls="pqcNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="pqcNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" asp-controller="Home" asp-action="Index">Trang chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Home" asp-action="Index">Điện thoại</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Home" asp-action="Index">Laptop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Home" asp-action="Index">Phụ kiện</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Home" asp-action="Privacy">Chính sách & Giới thiệu</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <a asp-area="Admin" asp-controller="Dashboard" asp-action="Index" class="btn btn-warning btn-sm fw-bold">
+                        Quản Trị Hệ Thống
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main role="main">
+        @RenderBody()
+    </main>
+
+    <footer class="pqc-footer">
+        <div class="container pb-4">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <h5>VỀ PQC STORE</h5>
+                    <p class="text-secondary small">
+                        Hệ thống bán lẻ thiết bị công nghệ hiện đại hàng đầu Việt Nam. Cam kết chất lượng, bảo hành chính hãng và hỗ trợ tận tâm.
+                    </p>
+                    <p class="text-secondary small mb-1">Địa chỉ: Tòa nhà Viện Công Nghệ Devmaster, Hà Nội</p>
+                    <p class="text-secondary small mb-1">Điện thoại: 0978.611.889</p>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5>DANH MỤC NỔI BẬT</h5>
+                    <ul class="list-unstyled small d-flex flex-column gap-2">
+                        <li><a asp-controller="Home" asp-action="Index">Điện thoại thông minh</a></li>
+                        <li><a asp-controller="Home" asp-action="Index">Laptop & Máy tính bảng</a></li>
+                        <li><a asp-controller="Home" asp-action="Index">Phụ kiện công nghệ cao cấp</a></li>
+                        <li><a asp-controller="Home" asp-action="Index">Thiết bị âm thanh chính hãng</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h5>HỖ TRỢ KHÁCH HÀNG</h5>
+                    <ul class="list-unstyled small d-flex flex-column gap-2">
+                        <li><a href="#">Hướng dẫn mua hàng</a></li>
+                        <li><a href="#">Chính sách đổi trả</a></li>
+                        <li><a href="#">Chính sách bảo hành</a></li>
+                        <li><a href="#">Hình thức thanh toán</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5>THÔNG TIN ĐỒ ÁN</h5>
+                    <div class="card bg-dark border-secondary p-3">
+                        <div class="card-body p-0">
+                            <p class="card-text text-light small mb-1">Học phần: Lập trình ASP.NET Core MVC</p>
+                            <p class="card-text text-warning small mb-1">Bài thực hành: PQCLession14 (Layout & Area)</p>
+                            <p class="card-text text-light small mb-0">Học viên: Phùng Quang Cường (2410900015)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pqc-copyright text-center">
+            <div class="container">
+                Bản quyền © 2026 PQC Store. Được thiết kế bởi sinh viên Phùng Quang Cường - Mã SV: 2410900015 - Lớp K24CNT1.
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
